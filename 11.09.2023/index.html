@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Zadanie</title>
+    </head>
+    <body>
+        <script>
+            function f1(a, b){
+                const body0 = document.getElementsByTagName("body");
+                const body1 = body0[0];
+                const element = document.createElement("p");
+                body1.appendChild(element);
+                element.innerText = "Ulubioną liczbą osoby urodzonej w " + a + " roku jest " + b;
+            }
+            function f2(){
+                let x = Number(prompt("Podaj rok urodzenia"));
+
+                while(x < 1920 || x > 2023){
+                    alert("Wprowadzono nieprawidłowy rok");
+                    x = Number(prompt("Podaj poprawny rok urodzenia"));
+                }
+
+                let y = Number(prompt("Podaj ulubioną liczbę"));
+
+                while(y == 69 || y == 420 || y == 2137){
+                    alert("Wprowadzono nieprawidłową liczbę");
+                    y = Number(prompt("Podaj poprawną ulubioną liczbę"));
+                }
+
+                f1(x, y);
+            }
+
+            setInterval(f2, 6000);
+
+        </script>
+    </body>
+</html>
