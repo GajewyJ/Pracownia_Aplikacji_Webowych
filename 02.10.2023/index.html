@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Główna</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(206, 168, 125);
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        h1{
+            font-size: 3em;
+        }
+        form{
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1ps solid rgb(131, 131, 131);
+            background-color: rgb(231, 213, 200);
+            width: 60%;
+            height: 200px;
+            border-radius: 20px;
+        }
+        textarea{
+            width: 60%;
+            height: 70%;
+            resize: none;
+            padding: 10px;
+            font-size: 2em;
+            border-radius: 10px;
+        }
+        input{
+            width: 20%;
+            height: 40%;
+            resize: none;
+            font-size: 2em;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formularz Kontaktowy</h1>
+    <form action="/kontakt" method="POST">
+        <textarea name="message1" placeholder="Wpisz wiadomość:"></textarea>
+        <input type="submit" value="Wyślij">
+    </form>
+</body>
+</html>
