@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Lis 06, 2023 at 02:01 PM
--- Wersja serwera: 10.4.28-MariaDB
--- Wersja PHP: 8.2.4
+-- Czas generowania: 06 Lis 2023, 17:59
+-- Wersja serwera: 10.4.25-MariaDB
+-- Wersja PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `node_students_subjects`
+-- Baza danych: `node_students_subjects`
 --
 
 -- --------------------------------------------------------
@@ -33,14 +33,14 @@ CREATE TABLE `messages` (
   `email` text DEFAULT NULL,
   `subject` text DEFAULT NULL,
   `message` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `messages`
+-- Zrzut danych tabeli `messages`
 --
 
 INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
-(4, 'Jan', 'jan@gmail.com', 'Temat 2', 'Wiadomość testowa');
+(4, 'Jan', 'jan.kowalski@gmail.com', 'Temat 2', 'Wiadomość testowa');
 
 -- --------------------------------------------------------
 
@@ -53,10 +53,10 @@ CREATE TABLE `students` (
   `name` text DEFAULT NULL,
   `surname` text DEFAULT NULL,
   `email` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `students`
+-- Zrzut danych tabeli `students`
 --
 
 INSERT INTO `students` (`id`, `name`, `surname`, `email`) VALUES
@@ -81,10 +81,10 @@ CREATE TABLE `subjects` (
   `id` int(11) NOT NULL,
   `name` text DEFAULT NULL,
   `hoursAWeek` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `subjects`
+-- Zrzut danych tabeli `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `name`, `hoursAWeek`) VALUES
@@ -106,22 +106,22 @@ INSERT INTO `subjects` (`id`, `name`, `hoursAWeek`) VALUES
 --
 
 CREATE TABLE `_prisma_migrations` (
-  `id` varchar(36) NOT NULL,
-  `checksum` varchar(64) NOT NULL,
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checksum` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `finished_at` datetime(3) DEFAULT NULL,
-  `migration_name` varchar(255) NOT NULL,
-  `logs` text DEFAULT NULL,
+  `migration_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logs` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rolled_back_at` datetime(3) DEFAULT NULL,
   `started_at` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `applied_steps_count` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `_prisma_migrations`
+-- Zrzut danych tabeli `_prisma_migrations`
 --
 
 INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_name`, `logs`, `rolled_back_at`, `started_at`, `applied_steps_count`) VALUES
-('2f911921-0208-475f-ac35-939f23968ed7', '977b5dd02c41d092ffdd96e344cb182b65375a7838fa0c7716c924cce31df1c0', '2023-11-06 12:26:11.828', '0_init', '', NULL, '2023-11-06 12:26:11.828', 0);
+('42ab5ab6-79e0-4bcd-9e62-86d070c7005e', '977b5dd02c41d092ffdd96e344cb182b65375a7838fa0c7716c924cce31df1c0', '2023-11-06 16:55:16.685', '0_init', '', NULL, '2023-11-06 16:55:16.685', 0);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -152,23 +152,23 @@ ALTER TABLE `_prisma_migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `students`
+-- AUTO_INCREMENT dla tabeli `students`
 --
 ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `subjects`
+-- AUTO_INCREMENT dla tabeli `subjects`
 --
 ALTER TABLE `subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
