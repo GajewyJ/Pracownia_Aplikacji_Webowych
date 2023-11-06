@@ -10,8 +10,8 @@ router.use((req, res, next) => {
 const links = {
     "api/students":"Lista studentów",
     "api/students/id":"Student o podanym ID",
-    "api/subject":"Lista przedmiotów",
-    "api/subject/id":"Przedmiot o podanym ID"
+    "api/subjects":"Lista przedmiotów",
+    "api/subjects/id":"Przedmiot o podanym ID"
 }
 const connection = mysql.createConnection({
     host:'localhost',
