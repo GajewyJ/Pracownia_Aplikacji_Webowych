@@ -5,8 +5,6 @@ const bodyParser = require('body-parser')
 const router = require('./public/js/apiRouter')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-//USUNĄĆ HASŁO!
-const url = "mongodb+srv://jakubgajewy:0vGUP3Xb7hUp4Ghu@bazadanych-13-11-2023.zvcpvyh.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
