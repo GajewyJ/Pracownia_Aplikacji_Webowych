@@ -2,8 +2,6 @@ const express = require('express')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express()
 
-//USUNĄĆ HASŁO!
-const url = "mongodb+srv://jakubgajewy:0vGUP3Xb7hUp4Ghu@bazadanych-13-11-2023.zvcpvyh.mongodb.net/?retryWrites=true&w=majority";
 
 const router = express.Router()
 router.use((req, res, next) => {
