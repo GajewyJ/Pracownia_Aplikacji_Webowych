@@ -5,7 +5,7 @@ import Paragraph from "../Paragraph";
 function Clicker(): React.JSX.Element{
     const [count, setCount] = React.useState<number>(0)
     return(
-        <div>
+        <div id="clickerDiv">
             <Paragraph content={`You've clicked the button ${count} times`}/>
             <button 
                 onClick={() => {
