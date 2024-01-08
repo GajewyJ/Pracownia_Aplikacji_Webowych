@@ -1,0 +1,36 @@
+$nav-height: 60px;
+$nav-bg: #333;
+$nav-link-color: #fff;
+$nav-link-hover-color: #f00;
+$body-bg-color: #eee;
+
+nav {
+  height: $nav-height;
+  background-color: $nav-bg;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: $nav-link-color;
+
+  a {
+    color: $nav-link-color;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $nav-link-hover-color;
+    }
+  }
+
+  ul{
+    list-style-type: none;
+    display: flex;
+
+    li{
+      margin: 20px;
+    }
+  }
+}
