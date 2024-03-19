@@ -46,7 +46,6 @@ router.post('/api/:kolekcja', (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 }))
     .get('/api/:kolekcja', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
     const db = yield client.db("api_20-11-2023");
     try {
         client.connect();

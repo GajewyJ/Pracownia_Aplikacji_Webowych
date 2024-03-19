@@ -36,7 +36,6 @@ router.post('/api/:kolekcja', async (req: Request, res: Response) => {
   }
 })
 .get('/api/:kolekcja', async (req: Request, res: Response) => {
-  console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
   const db = await client.db("api_20-11-2023")
   try{
     client.connect()

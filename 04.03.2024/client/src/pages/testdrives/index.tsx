@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './index.scss'
 import useSWR from 'swr';
 
@@ -7,25 +8,170 @@ interface TestDrive {
   id: string;
   clientsId: number;
   carsId: number;
-  drivesDate: string;
+  drivesDate: Date;
 }
 
 export default function TestDrives() {
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+
+  const [updateTestDrive, setUpdateTestDrive] = useState({drivesDate: new Date('1999-12-31')});
+
   const {
-    data: testDrives,
+    data: testdrives,
     error,
     isValidating,
+    mutate,
   } = useSWR<TestDrive[]>('http://localhost:9000/testdrives', fetcher);
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const client = Number(formData.get('clientSubmit') as string);
+    const car = Number(formData.get('carSubmit') as string);
+    const drivesDate = formData.get('dateSubmit') as string;
+
+    const drivesDateObject = new Date(drivesDate);
+    let isoFormattedDate = drivesDateObject.toISOString();
+
+    try {
+      const response = await fetch('http://localhost:9000/testdrives', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          clientsId: client,
+          carsId: car,
+          drivesDate: isoFormattedDate
+        }),
+      });
+
+      if (response.ok) {
+        mutate();
+      } else {
+        console.error('Failed to add new test drive!');
+      }
+    } catch (error) {
+      console.error('Error adding new test drive:', error);
+    }
+  };
+
   if (error) return <div className='failed'>Failed to load {error.message}</div>;
-  if (isValidating) return <div className="Loading">Loading...</div>;
+  if (isValidating) return <div className='Loading'>Loading...</div>;
+
+  const handleEditClick = (index: number) => {
+    setEditIndex(index);
+  };
+  
+  const handleDeleteClick = async (index: number) => {
+    try {
+      if (!testdrives) {
+        console.error('There are no test drives');
+        return;
+      }
+  
+      const testDriveToDelete = testdrives[index];
+
+      const response = await fetch(`http://localhost:9000/testdrives/${testDriveToDelete.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: testDriveToDelete.id
+        }),
+      });
+  
+      if (!response.ok) {
+        console.error('Error.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setEditIndex(null);
+      mutate();
+    }
+  };
+
+  const handleSaveClick = async (index: number) => {
+    try {
+      if (!testdrives) {
+        console.error('There are no test drives');
+        return;
+      }
+  
+      const testDriveToUpdate = testdrives[index];
+
+      let _date = updateTestDrive.drivesDate;
+
+      if(_date === new Date('1999-12-31')){
+        _date = testDriveToUpdate.drivesDate
+      }
+      
+      let isoFormattedDate = _date.toISOString();
+
+      const response = await fetch(`http://localhost:9000/testdrives/${testDriveToUpdate.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          drivesDate: isoFormattedDate
+        }),
+      });
+  
+      if (!response.ok) {
+        console.error('Error.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setEditIndex(null);
+      mutate();
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    
+    let _value = new Date(value)
+
+    setUpdateTestDrive((prevUpdateTestDrive) => ({ ...prevUpdateTestDrive, [name]: _value }));
+  };
 
   return (
-    <div>
-      {testDrives &&
-        testDrives.map((testDrive, index) => (
-            <p key={index}>{testDrive.clientsId} {testDrive.carsId} {testDrive.drivesDate}</p>
-        ))}
-    </div>
+    <section>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input type='number' placeholder='Client Id' name='clientSubmit' required />
+          <input type='number' placeholder='Cars Id' name='carSubmit' required />
+          <input type='date' placeholder='Date' name='dateSubmit' required />
+          <input type='submit' value='Add new' />
+        </form>
+      </div>
+      <div>
+        <table>
+          <tbody>
+          {testdrives?.map((testdrive, index) => (
+            <tr key={Number(testdrive.id)}>
+              <td>{String(testdrive.id)}.</td>
+              <td>{testdrive.clientsId}</td>
+              <td>{testdrive.carsId}</td>
+              <td>{editIndex === index ? <input type='date' name='drivesDate' defaultValue={String(testdrive.drivesDate).substring(0,10)} placeholder='Drives Date' onChange={handleInputChange} /> : String(testdrive.drivesDate).substring(0,10)}</td>
+              <td>
+                {editIndex === index ? (
+                  <button onClick={() => handleSaveClick(index)}>Save</button>
+                ) : (
+                  <button onClick={() => handleEditClick(index)}>Edit</button>
+                )}
+              </td>
+              <td><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
+            </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 };
