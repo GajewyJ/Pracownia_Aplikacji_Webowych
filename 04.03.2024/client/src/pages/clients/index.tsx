@@ -10,6 +10,8 @@ interface Client {
 }
 
 export default function Clients() {
+  const [id, setId] = useState('');
+
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const [updateClient, setUpdateClient] = useState({name: '-'});
@@ -126,8 +128,19 @@ export default function Clients() {
     setUpdateClient((prevUpdateClient) => ({ ...prevUpdateClient, [name]: value }));
   };
 
+  const handleSearch = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    window.location.href = `http://localhost:5173/clients/${id}`;
+  };
+
   return (
     <section>
+      <div>
+        <form onSubmit={handleSearch}>
+          <input type='number' name='id' placeholder='ID of client' value={id} onChange={(e) => setId(e.target.value)}/> 
+          <input type='submit' value='Search' />
+        </form>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <input type='text' placeholder='Name' name='nameSubmit' required />
@@ -136,19 +149,27 @@ export default function Clients() {
       </div>
       <div>
         <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
           {clients?.map((client, index) => (
             <tr key={client.id}>
               <td>{client.id}.</td>
               <td>{editIndex === index ? <input type='text' name='name' defaultValue={client.name} placeholder='Name' onChange={handleInputChange} /> : client.name}</td>
-              <td>
+              <td className='td1'>
                 {editIndex === index ? (
                   <button onClick={() => handleSaveClick(index)}>Save</button>
                 ) : (
                   <button onClick={() => handleEditClick(index)}>Edit</button>
                 )}
               </td>
-              <td><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
+              <td className='td2'><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
             </tr>
             ))}
           </tbody>

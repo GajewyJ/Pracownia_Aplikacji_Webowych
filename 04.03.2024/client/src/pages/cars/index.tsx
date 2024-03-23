@@ -17,6 +17,8 @@ export default function Cars() {
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const [updateCar, setUpdateCar] = useState({brand: '-', model: '-', year: 0, registration: '-'});
+  
+  const [id, setId] = useState('');
 
   const {
     data: cars,
@@ -158,8 +160,19 @@ export default function Cars() {
     }
   };
 
+  const handleSearch = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    window.location.href = `http://localhost:5173/cars/${id}`;
+  };
+
   return (
     <section>
+      <div>
+        <form onSubmit={handleSearch}>
+          <input type='number' name='id' placeholder='ID of car' value={id} onChange={(e) => setId(e.target.value)}/> 
+          <input type='submit' value='Search' />
+        </form>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <input type='text' placeholder='Brand' name='submitBrand' required />
@@ -172,6 +185,18 @@ export default function Cars() {
       </div>
       <div>
         <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>Production Year</th>
+              <th>Registration Number</th>
+              <th>Dealer's ID</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
           {cars?.map((car, index) => (
             <tr key={car.id}>
@@ -181,14 +206,14 @@ export default function Cars() {
               <td>{editIndex === index ? <input type='number' name='year' defaultValue={String(car.productionYear)} placeholder='Production Year' onChange={handleInputChange}/> : car.productionYear}</td>
               <td>{editIndex === index ? <input type='text' name='registration' defaultValue={car.registrationNumber} placeholder='Registration Number' onChange={handleInputChange}/> : car.registrationNumber}</td>
               <td>{car.dealer}</td>
-              <td>
+              <td className='td1'>
                 {editIndex === index ? (
                   <button onClick={() => handleSaveClick(index)}>Save</button>
                 ) : (
                   <button onClick={() => handleEditClick(index)}>Edit</button>
                 )}
               </td>
-              <td><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
+              <td className='td2'><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
             </tr>
             ))}
           </tbody>

@@ -6,6 +6,12 @@ import Adresses from "../pages/adresses"
 import Clients from "../pages/clients"
 import Sales from "../pages/sales"
 import TestDrives from "../pages/testdrives"
+import CarsById from "../pages/carsById"
+import AdressesById from "../pages/adressesById"
+import ClientsById from "../pages/clientsById"
+import DealersById from "../pages/dealersById"
+import SalesById from "../pages/salesById"
+import TestDrivesById from "../pages/testdrivesById"
 
 interface RouteItem{
     path: string,
@@ -49,4 +55,34 @@ export const routes: Array<RouteItem> = [
         element: <TestDrives/>,
         label: "Test Drives"
     },
+    {
+        path: "/cars/:id",
+        element: <CarsById/>,
+        label: "Cars By Id"
+    },
+    {
+        path: "/adresses/:id",
+        element: <AdressesById/>,
+        label: "Adresses By Id"
+    },
+    {
+        path: "/clients/:id",
+        element: <ClientsById/>,
+        label: "Clients By Id"
+    },
+    {
+        path: "/dealers/:id",
+        element: <DealersById/>,
+        label: "Dealers By Id"
+    },
+    {
+        path: "/sales/:id",
+        element: <SalesById/>,
+        label: "Sales By Id"
+    },
+    {
+        path: "/testdrives/:id",
+        element: <TestDrivesById/>,
+        label: "Test Drives By Id"
+    }
 ]

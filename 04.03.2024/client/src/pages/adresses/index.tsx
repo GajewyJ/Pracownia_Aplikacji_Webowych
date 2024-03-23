@@ -14,6 +14,8 @@ export default function Adresses() {
 
   const [updateAdress, setUpdateAdress] = useState({adress: '-'});
 
+  const [id, setId] = useState('');
+
   const {
     data: adresses,
     error,
@@ -126,8 +128,19 @@ export default function Adresses() {
     setUpdateAdress((prevUpdateAdress) => ({ ...prevUpdateAdress, [name]: value }));
   };
 
+  const handleSearch = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    window.location.href = `http://localhost:5173/adresses/${id}`;
+  };
+
   return (
     <section>
+      <div>
+        <form onSubmit={handleSearch}>
+          <input type='number' name='id' placeholder='ID of adress' value={id} onChange={(e) => setId(e.target.value)}/> 
+          <input type='submit' value='Search' />
+        </form>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <input type='text' placeholder='Adress' name='adressSubmit' required />
@@ -136,19 +149,27 @@ export default function Adresses() {
       </div>
       <div>
         <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Adress</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
           {adresses?.map((adress, index) => (
             <tr key={adress.id}>
               <td>{adress.id}.</td>
               <td>{editIndex === index ? <input type='text' name='adress' defaultValue={adress.adress} placeholder='Adress' onChange={handleInputChange} /> : adress.adress}</td>
-              <td>
+              <td className='td1'>
                 {editIndex === index ? (
                   <button onClick={() => handleSaveClick(index)}>Save</button>
                 ) : (
                   <button onClick={() => handleEditClick(index)}>Edit</button>
                 )}
               </td>
-              <td><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
+              <td className='td2'><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
             </tr>
             ))}
           </tbody>

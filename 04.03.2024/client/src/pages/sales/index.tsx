@@ -12,6 +12,8 @@ interface Sale {
 }
 
 export default function Sales() {
+  const [id, setId] = useState('');
+
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const [updateSale, setUpdateSale] = useState({price: 0});
@@ -132,8 +134,19 @@ export default function Sales() {
     setUpdateSale((prevUpdateSale) => ({ ...prevUpdateSale, [name]: parseFloat(value) }));
   };
 
+  const handleSearch = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    window.location.href = `http://localhost:5173/sales/${id}`;
+  };
+
   return (
     <section>
+      <div>
+        <form onSubmit={handleSearch}>
+          <input type='number' name='id' placeholder='ID of sale' value={id} onChange={(e) => setId(e.target.value)}/> 
+          <input type='submit' value='Search' />
+        </form>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <input type='number' placeholder='Client Id' name='clientSubmit' required />
@@ -144,6 +157,16 @@ export default function Sales() {
       </div>
       <div>
         <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Client's ID</th>
+              <th>Price</th>
+              <th>Dealer's ID</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
           {sales?.map((sale, index) => (
             <tr key={Number(sale.id)}>
@@ -151,14 +174,14 @@ export default function Sales() {
               <td>{sale.client}</td>
               <td>{editIndex === index ? <input type='number' name='price' defaultValue={sale.price} placeholder='Price' onChange={handleInputChange} step='0.01'/> : sale.price + " zł"}</td>
               <td>{sale.dealer}</td>
-              <td>
+              <td className='td1'>
                 {editIndex === index ? (
                   <button onClick={() => handleSaveClick(index)}>Save</button>
                 ) : (
                   <button onClick={() => handleEditClick(index)}>Edit</button>
                 )}
               </td>
-              <td><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
+              <td className='td2'><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
             </tr>
             ))}
           </tbody>

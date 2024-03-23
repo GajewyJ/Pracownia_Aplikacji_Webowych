@@ -1,0 +1,19 @@
+$footer-bg: #4f6397;
+$footer-color: rgb(0, 0, 0);
+
+footer {
+    background-color: $footer-bg;
+    padding: 20px;
+    text-align: center;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+
+    h5 {
+        color: $footer-color;
+        font-size: 1.6em;
+        width: 30%;
+    }
+}

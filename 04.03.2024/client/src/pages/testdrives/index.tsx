@@ -12,6 +12,8 @@ interface TestDrive {
 }
 
 export default function TestDrives() {
+  const [id, setId] = useState('');
+
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const [updateTestDrive, setUpdateTestDrive] = useState({drivesDate: new Date('1999-12-31')});
@@ -140,8 +142,19 @@ export default function TestDrives() {
     setUpdateTestDrive((prevUpdateTestDrive) => ({ ...prevUpdateTestDrive, [name]: _value }));
   };
 
+  const handleSearch = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    window.location.href = `http://localhost:5173/testdrives/${id}`;
+  };
+
   return (
     <section>
+      <div>
+        <form onSubmit={handleSearch}>
+          <input type='number' name='id' placeholder='ID of test drive' value={id} onChange={(e) => setId(e.target.value)}/> 
+          <input type='submit' value='Search' />
+        </form>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <input type='number' placeholder='Client Id' name='clientSubmit' required />
@@ -152,6 +165,16 @@ export default function TestDrives() {
       </div>
       <div>
         <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Client's ID</th>
+              <th>Car's ID</th>
+              <th>Drive's Date</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
           {testdrives?.map((testdrive, index) => (
             <tr key={Number(testdrive.id)}>
@@ -159,14 +182,14 @@ export default function TestDrives() {
               <td>{testdrive.clientsId}</td>
               <td>{testdrive.carsId}</td>
               <td>{editIndex === index ? <input type='date' name='drivesDate' defaultValue={String(testdrive.drivesDate).substring(0,10)} placeholder='Drives Date' onChange={handleInputChange} /> : String(testdrive.drivesDate).substring(0,10)}</td>
-              <td>
+              <td className='td1'>
                 {editIndex === index ? (
                   <button onClick={() => handleSaveClick(index)}>Save</button>
                 ) : (
                   <button onClick={() => handleEditClick(index)}>Edit</button>
                 )}
               </td>
-              <td><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
+              <td className='td2'><button onClick={() => handleDeleteClick(index)}>Delete</button></td>
             </tr>
             ))}
           </tbody>

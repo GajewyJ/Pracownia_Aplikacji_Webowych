@@ -1,8 +1,8 @@
 import './App.scss'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import NavBar from './components/navbar'
 import Header from './components/header'
 import { routes } from './helpers/routes'
+import Footer from './components/footer'
 
 function App() {
   return (
@@ -10,7 +10,6 @@ function App() {
       <main>
         <Router>
           <Header/>
-          <NavBar/>
           <Routes>
             {routes.map((route) => (
               <Route
@@ -20,6 +19,7 @@ function App() {
               />
             ))}
           </Routes>
+          <Footer/>
         </Router>
       </main>
     </>

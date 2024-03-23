@@ -62,7 +62,7 @@ async function main() {
   app.get('/cars/:id', async (req: Request, res: Response) => {
     const result = await prisma.cars.findUnique({where: {id: Number(req.params.id)}})
     if(result == null){
-      res.json(ERROR_404)
+      res.status(404).json(ERROR_404)
     }
     else{
       res.json(result)
@@ -109,7 +109,7 @@ async function main() {
   app.get('/adresses/:id', async (req: Request, res: Response) => {
     const result = await prisma.adresses.findUnique({where: {id: Number(req.params.id)}})
     if(result == null){
-      res.json(ERROR_404)
+      res.status(404).json(ERROR_404)
     }
     else{
       res.json(result)
@@ -154,7 +154,7 @@ async function main() {
   app.get('/dealers/:id', async (req: Request, res: Response) => {
     const result = await prisma.dealers.findUnique({where: {id: Number(req.params.id)}})
     if(result == null){
-      res.json(ERROR_404)
+      res.status(404).json(ERROR_404)
     }
     else{
       res.json(result)
@@ -199,7 +199,7 @@ async function main() {
   app.get('/clients/:id', async (req: Request, res: Response) => {
     const result = await prisma.clients.findUnique({where: {id: Number(req.params.id)}})
     if(result == null){
-      res.json(ERROR_404)
+      res.status(404).json(ERROR_404)
     }
     else{
       res.json(result)
@@ -245,7 +245,7 @@ async function main() {
   app.get('/sales/:id', async (req: Request, res: Response) => {
     const result = await prisma.sales.findUnique({where: {id: Number(req.params.id)}})
     if(result == null){
-      res.json(ERROR_404)
+      res.status(404).json(ERROR_404)
     }
     else{
       res.json(result)
@@ -293,7 +293,7 @@ async function main() {
   app.get('/testdrives/:id', async (req: Request, res: Response) => {
     const result = await prisma.testdrives.findUnique({where: {id: Number(req.params.id)}})
     if(result == null){
-      res.json(ERROR_404)
+      res.status(404).json(ERROR_404)
     }
     else{
       res.json(result)

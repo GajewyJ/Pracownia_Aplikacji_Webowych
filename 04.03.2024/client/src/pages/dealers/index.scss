@@ -1,0 +1,182 @@
+$bg-color: #4f6397;
+
+section{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    div{
+        width: 70%;
+
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    div:nth-of-type(1){
+        form{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 10px;
+            background-color: $bg-color;
+
+            width: 100%;
+
+            input{
+                width: 100px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+                padding: 5px;
+                margin: 1px;
+                cursor: pointer;
+                border: 0;
+                text-align: center;
+
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+
+            input[type="submit"]{
+                height: 40px;
+            }
+        }
+
+        margin-bottom: 0;
+    }
+
+    div:nth-of-type(2){
+        form{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 10px;
+            background-color: $bg-color;
+
+            width: 100%;
+
+            input{
+                width: 150px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+                padding: 5px;
+                margin: 1px;
+                cursor: pointer;
+                border: 0;
+                text-align: center;
+
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+
+            input[type="submit"]{
+                height: 40px;
+                padding: 5px;
+                background-color: rgb(118, 151, 95);
+            }
+        }
+    }
+
+    div:nth-of-type(3){
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+
+            width: 100%;
+
+            background-color: #e6edff;
+
+            thead{
+                border: 1px solid black;
+                tr{
+                    th{
+                        border: 1px solid black;
+                        width: 12%;
+                        font-size: 1.1em;
+                    }
+                }
+            }
+
+            tbody{
+                border: 1px solid black;
+                tr{
+                    td{
+                        border: 1px solid black;
+                        font-size: 1.1em;
+                        padding: 0px;
+                        height: 50px;
+
+                        text-align: center;
+
+                        input{
+                            width: 100%;
+                            background-color: #919dbb;
+                            height: 100%;
+                            border: 0;
+                            text-align: center;
+                            cursor: pointer;
+                            margin: 0;
+                            font-size: 1.1em;
+                            padding: 0;
+
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                        }
+                    }
+
+                    .td1{
+                        padding: 0;
+                        height: 0px;
+
+                        button{
+                            width: 100%;
+                            height: 100%;
+                            border: 0;
+                            cursor: pointer;
+                            margin: 0;
+                            background-color: $bg-color;
+                            font-size: 1.1em;
+
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                        }
+                    }
+
+                    .td2{
+                        padding: 0;
+                        height: 0px;
+
+                        button{
+                            width: 100%;
+                            height: 100%;
+                            border: 0;
+                            cursor: pointer;
+                            margin: 0;
+                            background-color: rgb(190, 110, 110);
+                            font-size: 1.1em;
+
+                            &:hover{
+                                opacity: 0.7;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

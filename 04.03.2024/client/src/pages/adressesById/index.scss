@@ -16,6 +16,12 @@ section{
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+
+        p{
+            width: 100%;
+            text-align: center;
+            font-size: 1.3em
+        }
     }
 
     div:nth-of-type(1){
@@ -55,42 +61,6 @@ section{
     }
 
     div:nth-of-type(2){
-        form{
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            padding: 10px;
-            background-color: $bg-color;
-
-            width: 100%;
-
-            input{
-                width: 150px;
-                height: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: row;
-                padding: 5px;
-                margin: 1px;
-                cursor: pointer;
-                border: 0;
-                text-align: center;
-
-                &:hover{
-                    opacity: 0.7;
-                }
-            }
-
-            input[type="submit"]{
-                height: 40px;
-                padding: 5px;
-                background-color: rgb(118, 151, 95);
-            }
-        }
-    }
-
-    div:nth-of-type(3){
         table{
             border: 1px solid black;
             border-collapse: collapse;

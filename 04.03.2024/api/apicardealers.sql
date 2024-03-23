@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Lis 2023, 17:23
+-- Czas generowania: 23 Mar 2024, 16:40
 -- Wersja serwera: 10.4.25-MariaDB
 -- Wersja PHP: 8.1.10
 
@@ -60,8 +60,9 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`id`, `brand`, `model`, `productionYear`, `registrationNumber`, `dealer`) VALUES
-(2, 'Mercedes-Benz', 'GLB', 2020, 'PO9TJ75', NULL),
-(12, 'Mercedes-Benz', 'GLB', 2020, 'PO9TJ76', NULL);
+(2, 'Mercedes-Benz', 'GLB', 2020, 'PO9TJ75', 1),
+(12, 'Mercedes-Benz', 'GLB', 2020, 'PO9TJ76', NULL),
+(14, 'Mercedes-Benz', 'GLB', 2020, 'PO9TJ77', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,8 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`) VALUES
-(1, 'Grzegorz Brzozowski');
+(1, 'Grzegorz Brzozowski'),
+(5, 'Marian Tarkowski');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,9 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id`, `client`, `price`, `dealer`) VALUES
-(2, 1, 720000, 1);
+(2, 1, 46500, 1),
+(11, 1, 5499.99, 1),
+(12, 1, 99.98, 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +143,8 @@ CREATE TABLE `testdrives` (
 --
 
 INSERT INTO `testdrives` (`id`, `clientsId`, `carsId`, `drivesDate`) VALUES
-(3, 1, 12, '2023-11-11');
+(3, 1, 12, '2024-02-29'),
+(11, 1, 12, '1999-12-31');
 
 -- --------------------------------------------------------
 
@@ -225,37 +230,37 @@ ALTER TABLE `_prisma_migrations`
 -- AUTO_INCREMENT dla tabeli `adresses`
 --
 ALTER TABLE `adresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT dla tabeli `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT dla tabeli `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `dealers`
 --
 ALTER TABLE `dealers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT dla tabeli `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT dla tabeli `testdrives`
 --
 ALTER TABLE `testdrives`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ograniczenia dla zrzutów tabel
